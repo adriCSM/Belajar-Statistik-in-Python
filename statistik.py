@@ -71,4 +71,6 @@ data=pd.read_csv('./Assay.csv',sep=',')
 # print(data['Ni'].var()) # => Variansi (lib pandas), Secara default pandas mengitung variansi sampel
 # print(np.var(data['Ni'])) # => Variansi (lib numpy),Secara default pandas mengitung variansi populasi
 # print(data['Ni'].var(ddof=0)) # => mengubah variansi pandas dari sampel menjadi populasi
-
+# -----Deviasi Baku (Standard Deviation)-----
+print(data['Ni'].std()) # => menghitung deviasi baku sampel Ni menggunakan method std() dari pandas
+print(np.std(data['Ni'],ddof=1)) # => menghitung deviasi baku sampel Ni (lib numpy), ddof=1 untuk mengubah populasi menjadi sampel dalam perhitungan

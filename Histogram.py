@@ -3,6 +3,7 @@ import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
+
 # data=pd.read_csv('./COLLAR_5D1.csv',sep=',') # Data Colar
 data=pd.read_csv('./ASSAY.csv',sep=',') # Data Colar
 fig, ax = plt.subplots()
