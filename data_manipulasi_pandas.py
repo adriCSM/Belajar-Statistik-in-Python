@@ -42,7 +42,7 @@ print(number_list.index) #=> untuk mencari index/key dari Series atau Dataframe
 print(data.columns) #=> untuk mengetahui apa saja kolom yang tersedia di dataframe tersebut (hanya digunakan untuk dataframe saja)
 
 # -----Attribute .loc-----
-print(number_list.loc[:3]) #=> igunakan slice dataframe atau series berdasarkan nama kolom dan/atau nama index.
+print(number_list.loc[:3]) #=> digunakan slice dataframe atau series berdasarkan nama kolom dan/atau nama index.
 
 # -----Attribute .iloc-----
 print(number_list.iloc[:2]) #=> untuk slice dataframe atau series berdasarkan index kolom dan/atau index
@@ -86,3 +86,35 @@ arr_df = np.array([[1,2,3,5],
                    ['a','b','c',10]])
 ex_df = pd.DataFrame(arr_df)
 print(ex_df)
+
+# -----Indexing----
+#=> Baca file TSV sample_tsv.tsv
+df = pd.read_csv("https://storage.googleapis.com/dqlab-dataset/sample_tsv.tsv", sep="\t") 
+print("Index: ",df.index) #=> Index dari df
+print("Columns: ",df.columns) #=> Column dari df
+
+# Set multi index df
+df_x = df.set_index([ 'order_id', 'customer_id', 'product_id', 'order_date']) 
+for name, level in zip(df_x.index.names, df_x.index.levels):
+    print(name,':',level) # Print nama dan level dari multi index
+
+ # Baca file sample_tsv.tsv untuk 10 baris pertama saja 
+df = pd.read_csv("https://storage.googleapis.com/dqlab-dataset/sample_tsv.tsv", sep="\t",nrows=10) #=> Baca file TSV sample_tsv.tsv
+# Cetak data frame awal
+print("Dataframe awal:\n", df) 
+df.index = ["Pesanan ke-" + str(i) for i in range(1, 11)] # Set index baru
+print("Dataframe dengan index baru:\n", df) # Cetak data frame dengan index baru
+
+# Baca file sample_tsv.tsv dan set lah index_col sesuai instruksi
+df = pd.read_csv("https://storage.googleapis.com/dqlab-dataset/sample_tsv.tsv", sep="\t", index_col=["order_date", "order_id"])
+# Cetak data frame untuk 8 data teratas
+print("Dataframe:\n", df.head(8))
+
+# -----Slicing -----
+# slicing adalah cara untuk melakukan filter ke dataframe/series berdasarkan kriteria tertentu dari nilai kolomnya ataupun kriteria index-nya.
+
+# Baca file sample_csv.csv
+df = pd.read_csv("https://storage.googleapis.com/dqlab-dataset/sample_csv.csv")
+# Slice langsung berdasarkan kolom
+df_slice = df.loc[(df["customer_id"] == 18055 ) &(df["product_id"].isin(["P0029","P0040", "P0041", "P0116","P0117"]))]
+print("Slice langsung berdasarkan kolom:\n", df_slice)

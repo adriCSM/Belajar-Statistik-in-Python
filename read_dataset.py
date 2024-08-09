@@ -34,3 +34,7 @@ print(df_json.head(10)) # Menampilkan 10 data teratas
 # -----Google BigQuery-----
 # my_query="SELECT * FROM `bigquery-public-data.covid19_jhu_csse_eu.summary` LIMIT 1000"
 # df_covid19_summary=pd.read_gbq(my_query,project_id="xxxxx") #=> project_id="XXXXXXXX" adalah ID dari Google BigQuery account.
+
+# -----Head and Tail-----
+# method .head yang diterapkan pada suatu variabel bertipe pandas dataframe/series. Method .head ditujukan untuk membatasi tampilan jumlah baris teratas dari dataset. Sementara itu, method .tail ditujukan untuk membatasi jumlah baris terbawah dari dataset.
+
