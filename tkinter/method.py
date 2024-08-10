@@ -50,8 +50,14 @@ def read_file(directory,sheet):
   else:
     print('Aplikasi ini hanya dapat membaca format file .xlsx dan .csv')
 
-def choose_directory():
-  print('f')
+def choose_directory(filedialog,entry):
+  directory=filedialog.askdirectory()
+  if entry.get() != '':
+    entry.delete(0,1000)
+    entry.insert(0,directory)
+  else:
+    entry.insert(0,directory)
+    
 
 def create_scatterplot(x,y,power,filename,dpi,layer,color='darkorange'):
   # model_regresi
