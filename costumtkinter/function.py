@@ -104,52 +104,31 @@ def create_scatterplot(data,color='darkorange'):
     plt.text(0.5, 1.09, 'SCATTERPLOT',fontsize=20,fontfamily='Times New Roman',fontweight="bold", ha='center', transform=plt.gca().transAxes)
     plt.text(0.02, y.max()+0.05, f'$y={round(intercept,2)}+{round(slope,2)}x$'+'\n'+f'$R^2={round(korelasi,6)}$',family='Times New Roman', size=8, ha='left',va='top',bbox=dict(facecolor='white', edgecolor='black'))
     # =================================
-    plt.xlim(left=0)
     plt.xlabel(x.name.capitalize(),fontsize=14,fontfamily='Times New Roman',)
     plt.ylabel(y.name.capitalize(),fontsize=14,fontfamily='Times New Roman')
 
-    if x.max() <= 5:
+    if x.max()-x.min() <= 5:
+      plt.xlim(left=0)
       plt.xticks(np.arange(0, x.max()+0.1, step=0.1),fontsize=10,fontfamily='Times New Roman')
       plt.yticks(np.arange(0, y.max()+0.1, step=0.1),fontsize=10,fontfamily='Times New Roman')
-    elif x.max() <= 10:
+    elif x.max()-x.min() <= 10:
+      plt.xlim(left=0)
       plt.xticks(np.arange(0, x.max()+1, step=1),fontsize=10,fontfamily='Times New Roman')
       plt.yticks(np.arange(0, y.max()+1, step=1),fontsize=10,fontfamily='Times New Roman')
-    elif x.max() <= 50:
+    elif x.max()-x.min() <= 50:
+      plt.xlim(left=0)
       plt.xticks(np.arange(0, x.max()+5, step=5),fontsize=10,fontfamily='Times New Roman')
       plt.yticks(np.arange(0, y.max()+5, step=5),fontsize=10,fontfamily='Times New Roman')
-    elif x.max() <= 100:
-      plt.xticks(np.arange(0, x.max()+10, step=10),fontsize=10,fontfamily='Times New Roman')
-      plt.yticks(np.arange(0, y.max()+10, step=10),fontsize=10,fontfamily='Times New Roman')
-    elif x.max() <= 1000:
-      plt.xticks(np.arange(0, x.max()+100, step=100),fontsize=10,fontfamily='Times New Roman')
-      plt.yticks(np.arange(0, y.max()+100, step=100),fontsize=10,fontfamily='Times New Roman')
-    elif x.max() <= 5000:
-      plt.xticks(np.arange(0, x.max()+500, step=500),fontsize=10,fontfamily='Times New Roman')
-      plt.yticks(np.arange(0, y.max()+500, step=500),fontsize=10,fontfamily='Times New Roman')
-    elif x.max() <= 10000:
-      plt.xticks(np.arange(0, x.max()+1000, step=1000),fontsize=10,fontfamily='Times New Roman')
-      plt.yticks(np.arange(0, y.max()+1000, step=1000),fontsize=10,fontfamily='Times New Roman')
-    elif x.max() <= 50000:
-      plt.xticks(np.arange(0, x.max()+5000, step=5000),fontsize=10,fontfamily='Times New Roman')
-      plt.yticks(np.arange(0, y.max()+5000, step=5000),fontsize=10,fontfamily='Times New Roman')
-    elif x.max() <= 100000:
-      plt.xticks(np.arange(0, x.max()+10000, step=10000),fontsize=10,fontfamily='Times New Roman')
-      plt.yticks(np.arange(0, y.max()+10000, step=10000),fontsize=10,fontfamily='Times New Roman')
-    elif x.max() <= 500000:
-      plt.xticks(np.arange(0, x.max()+50000, step=50000),fontsize=10,fontfamily='Times New Roman')
-      plt.yticks(np.arange(0, y.max()+50000, step=50000),fontsize=10,fontfamily='Times New Roman')
-    elif x.max() <= 1000000:
-      plt.xticks(np.arange(0, x.max()+100000, step=100000),fontsize=10,fontfamily='Times New Roman')
-      plt.yticks(np.arange(0, y.max()+100000, step=100000),fontsize=10,fontfamily='Times New Roman')
-    elif x.max() <= 5000000:
-      plt.xticks(np.arange(0, x.max()+500000, step=500000),fontsize=10,fontfamily='Times New Roman')
-      plt.yticks(np.arange(0, y.max()+500000, step=500000),fontsize=10,fontfamily='Times New Roman')
-    elif x.max() <= 10000000:
-      plt.xticks(np.arange(0, x.max()+1000000, step=1000000),fontsize=10,fontfamily='Times New Roman')
-      plt.yticks(np.arange(0, y.max()+1000000, step=1000000),fontsize=10,fontfamily='Times New Roman')
-    elif x.max() > 10000000:
-      plt.xticks(np.arange(0, x.max()+5000000, step=5000000),fontsize=10,fontfamily='Times New Roman')
-      plt.yticks(np.arange(0, y.max()+5000000, step=5000000),fontsize=10,fontfamily='Times New Roman')
+    elif x.max()-x.min() <= 1000:
+      plt.xlim(round(x.min(),0)-10)
+      plt.ylim(round(y.min(),0)-10)
+      plt.xticks(np.arange(x.min()-10, x.max()+10, step=10),fontsize=10,fontfamily='Times New Roman')
+      plt.yticks(np.arange(y.min()-10, y.max()+10, step=10),fontsize=10,fontfamily='Times New Roman')
+    elif x.max()-x.min() >= 1000:
+      plt.xlim(round(x.min()))
+      plt.ylim(round(y.min()))
+      plt.xticks(np.arange(x.min(), x.max()+100, step=100),fontsize=10,fontfamily='Times New Roman')
+      plt.yticks(np.arange(y.min(), y.max()+100, step=100),fontsize=10,fontfamily='Times New Roman')
     
 
     plt.legend(loc='upper right', bbox_to_anchor=(1, 1.06), ncol=1)
