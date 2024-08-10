@@ -5,17 +5,19 @@ from matplotlib.ticker import AutoMinorLocator
 import pandas as pd
 from tkinter import filedialog
 from tkinter import *
-from tkinter import ttk
+from customtkinter import *
+
 def run(teks,*args):
   print(teks)
   
-def change_value(att,event):
-  sheet=att[0].get()
-  directory=att[3].get()
+def change_value(att,sheet):
+  directory=att[2].get()
   file=read_file(directory,sheet)
   if file is not None:
-    att[1].config(value=file.columns.tolist())
-    att[2].config(value=file.columns.tolist())
+    att[0].configure(values=file.columns.tolist())
+    att[1].configure(values=file.columns.tolist())
+
+  
 
 def openfile(entry,sheet):
   directory=filedialog.askopenfilename()
@@ -27,7 +29,7 @@ def openfile(entry,sheet):
       entry.insert(0,directory)
     file=pd.ExcelFile(directory,engine="openpyxl")
     sheet_file=file.sheet_names
-    sheet.config(value=sheet_file)
+    sheet.configure(values=sheet_file)
   
 
 def get_attribut_excel(input,event):
